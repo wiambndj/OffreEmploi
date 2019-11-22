@@ -18,3 +18,6 @@
 Route::get('/acceuil', function () {
     return view('acceuil');
 });
+Route::get('/joblist', function () {
+    return view('joblist');
+});
