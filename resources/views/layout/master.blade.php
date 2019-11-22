@@ -218,4 +218,18 @@
             </div>
         </div>
     </footer>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/jquery.easing.min.js')}}"></script>
+    <script src="{{asset('js/plugins.js')}}"></script>
+
+    <!-- selectize js -->
+    <script src="{{asset('js/selectize.min.js')}}"></script>
+    <script src="{{asset('js/jquery.nice-select.min.js')}}"></script>
+
+    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('js/counter.int.js')}}"></script>
+
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/home.js')}}"></script>
     </html> 
