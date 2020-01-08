@@ -1,7 +1,7 @@
 
-  @extends('layout.master')
-@section('titre','Details de l'offre')
-@section('content')
+  @extends('layouts.master')
+@section('titre','Details de loffre')
+@section('content1')
 <body>
     <!-- Loader -->
     <div id="preloader">

@@ -44,7 +44,11 @@ class ExperienceController extends Controller
 
     
     $experience->save();
+<<<<<<< HEAD
     return redirect()->back();
+=======
+    return redirect('exp');
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
 }
 public function destroy(Request $request,$id){
    $experience = Experience::find($id);

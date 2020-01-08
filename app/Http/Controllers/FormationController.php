@@ -16,15 +16,33 @@ class FormationController extends Controller
 {
 
 
+<<<<<<< HEAD
 
+=======
+    public function index() {
+        
+    
+        $listcv = Cv::where('user_id',Auth::user()->id)->get();
+        
+      
+      
+
+      return view('profiles.index', ['cvs' => $listcv]);
+  }
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
    public function edit($id) {
 
   $formation =Formation ::find($id);
 
  
 
+<<<<<<< HEAD
   return view('profiles.editform', ['formation' => $formation ]);
   
+=======
+  return view('profiles.editform', ['formation ' => $formation ]);
+     return redirect('exp');
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
 
 }
 public function update(Request $request, $id) {
@@ -42,15 +60,26 @@ public function update(Request $request, $id) {
   $formation ->fin = $request->input('fin');
   $formation ->description = $request->input('description');
 
+<<<<<<< HEAD
   $formation ->type = $request->input('type');
   
   $formation->save();
   return redirect()->back();
+=======
+  
+  $formation->save();
+
+  return redirect('exp');
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
 }
 public function destroy(Request $request,$id){
  $formation = Formation::find($id);
  $formation->delete();
+<<<<<<< HEAD
  return redirect()->back();
+=======
+ return redirect('exp');
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
 
 
 }

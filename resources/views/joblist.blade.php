@@ -1,6 +1,6 @@
-@extends('layout.master')
+@extends('layouts.master')
 @section('titre','job')
-@section('content')
+@section('content1')
 <body>
 
     <!-- Navbar End -->

@@ -1,12 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+<<<<<<< HEAD
 use Hash;
+=======
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
 use Auth;
 use Session;
 use App\user;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Illuminate\Validation\Validator;
+=======
+
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
 class ProfilesController extends Controller
 {
     public function index($name)
@@ -64,6 +71,7 @@ class ProfilesController extends Controller
             return view('profiles.changepassword') ->with('info', Auth::user());
                 
         }
+<<<<<<< HEAD
         public function changePassword(Request $request)
         {
             if(!(Hash::check($request->get('current_password'), Auth::user()->password))){
@@ -85,6 +93,8 @@ class ProfilesController extends Controller
            
                 
         }
+=======
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
         public function edit1()
         {
             return view('profiles.editrec')->with('info', Auth::user());

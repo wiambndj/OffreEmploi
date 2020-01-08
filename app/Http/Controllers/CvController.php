@@ -18,8 +18,16 @@ class CvController extends Controller
     public function index() {
         
     
+<<<<<<< HEAD
           $listcv = Cv::where('user_id',Auth::user()->id)->paginate(3);
  
+=======
+          $listcv = Cv::where('user_id',Auth::user()->id)->get();
+          
+        
+        
+
+>>>>>>> 00ba623784c1670fcf9ed4e4d70096915b0c2792
         return view('profiles.index', ['cvs' => $listcv,'info'=> Auth::user()]);
     }
     public function modifier()
