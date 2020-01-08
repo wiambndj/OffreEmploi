@@ -42,7 +42,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="text-dark mb-3">Web Developer</h4>
+                
+                    <h4 class="text-dark mb-3">{{$job->intitule}}</h4>
+                    
+                    <h6 class="mb-2"><a href="{{ url('entreprise/'.$job->user_id) }}" class="text-dark">cette offre publi par</a></h6>
+                    @if(session('message'))
+                    <div class="alert alert-success" role="alert">
+                    {{session('message')}}
+                    @endif
+                    @if(session('error'))
+                    <div class="alert alert-danger" role="alert">
+                    {{session('error')}}
+                    @endif
                 </div>
             </div>
 
@@ -52,22 +63,22 @@
                         <div class="job-detail-content">
                             <img src="images/featured-job/img-4.png" alt="" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
                             <div class="job-detail-com-desc overflow-hidden d-block">
-                                <h4 class="mb-2"><a href="#" class="text-dark">Web Developer</a></h4>
-                                <p class="text-muted mb-0"><i class="mdi mdi-link-variant mr-2"></i>Web Themescode.pvt.Ltd</p>
-                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>659 Meadowcrest Lane Lexington, KY 40507</p>
+                                <h4 class="mb-2"><a href="#" class="text-dark">{{$job->intitule}}</a></h4>
+                                <p class="text-muted mb-0"><i class="mdi mdi-link-variant mr-2"></i>{{$job->entreprise}}</p>
+                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$job->lieu}}</p>
                             </div>
                         </div>
 
                         <div class="job-detail-desc mt-4">
-                            <p class="text-muted mb-3">Neque porro quisquam est qui dolorem ipsum dolor sit amet consectetur adipisci velit a quia non eius modi tempora incidunt ut labore dolore magnam aliquam quaerat voluptatem Nemo enim ipsam voluptatem quia voluptas sit aspernatur odit aut fugit sed quia consequuntur magni dolores eose.</p>
+                            <p class="text-muted mb-3">{{$job->competence}}</p>
 
-                            <p class="text-muted mb-0">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praelsentium voluptatum at deleniti atque corrupti quos dolores quas molestias excepturi occaecati cupiditate non provident, similique sunt culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga Temporibus autem quibusdam aut Ut at as enim ad minima veniam quis nostrum that exercitationem ullam corporis suscipit laboriosam officiis debitis aut rerum necessitatibus.</p>
+                         
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="text-dark mt-4">Job Description :</h5>
+                            <h5 class="text-dark mt-4">Description  d'offre</h5>
                         </div>
                     </div>
 
@@ -75,9 +86,9 @@
                         <div class="col-lg-12">
                             <div class="job-detail border rounded mt-2 p-4">
                                 <div class="job-detail-desc">
-                                    <p class="text-muted mb-3">Quis autem vel eum iure reprehenderit qui in ea voluptate velite esse quam nihil molestiae consequatur vel illum qui dolorem eum fugiat at quo voluptas nulla pariatur vero eos accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias at excepturi sint that occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est Quis autem vel eum iure reprehenderit qui in ea that voluptate esse quam nihil molestiae consequatur vel qui dolorem eum fugiat quo voluptas nulla by the pariatur laborum At vero eos et accusamus et iusto odio dignissimos ducimus blanditiis praesentium voluptatum deleniti atque corrupti quos dolores quas molestias excepturi sint occaecati cupiditate non provident et dolorum fuga.</p>
+                                    <p class="text-muted mb-3">{{$job->description}}</p>
 
-                                    <p class="text-muted mb-0">Itaque earum rerum hic tenetur sapiente delectus aut reiciendis voluptatibus maiores that alias consequatur aut perferendis doloribus asperiores repellat Sed ut perspiciatis unde omnis iste sit at natus error sit voluptatem accusantium doloremque laudantium niti totame rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -212,7 +223,7 @@
                                 <div class="float-left mr-2">
                                     <i class="mdi mdi-bank text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">: Web Themes.pvt.Ltd</p>
+                                <p class="text-muted mb-2">{{$job->lieu}}</p>
                             </div>
 
                             <div class="job-details-desc-item">
@@ -240,31 +251,24 @@
                                 <div class="float-left mr-2">
                                     <i class="mdi mdi-currency-usd text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">: $700 - $800/month</p>
+                                <p class="text-muted mb-2">:{{$job->remun}}DA</p>
                             </div>
 
                             <div class="job-details-desc-item">
                                 <div class="float-left mr-2">
                                     <i class="mdi mdi-security text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">: 1 To 3 Years.</p>
+                                <p class="text-muted mb-2">:{{$job->experience}} ans</p>
                             </div>
 
                             <div class="job-details-desc-item">
                                 <div class="float-left mr-2">
                                     <i class="mdi mdi-clock-outline text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">: 4 minutes ago</p>
+                                <p class="text-muted mb-2">:{{$job->depot}}</p>
                             </div>
 
-                            <h6 class="text-dark f-17 mt-3 mb-0">Share Job :</h6>
-                            <ul class="social-icon list-inline mt-3 mb-0">
-                                <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google-plus"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-whatsapp"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-linkedin"></i></a></li>
-                            </ul>
+                          
                         </div>
                     </div>
 
@@ -333,66 +337,63 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter cv</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Postuler</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
+        <form  action="{{ route('postuler.store',[$job->id]) }}" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <script>function fun_showtextbox()
+{
+    var select_status=$('#messagetype').val();
+    /* if select personal from select box then show my text box */
+    
+if(select_status == 'Personal')
+    {
+        $('#mobileno_textbox').show();// By using this id you can show your content    
+        $('#mobileno_textbox2').hide();
+    }
+    else
+    {   $('#mobileno_textbox2').show();
+        $('#mobileno_textbox').hide();// otherwise hide   
+    }
+    
+}</script>
+           <div class="form-group" >
+        <select name="messagetype" id="messagetype"  class="form-control"  data-style="select-wih-transition" title="News Type" data-size="7"  onchange="fun_showtextbox()">
+        <option disabled="">Select</option>
+        <option value="All">Parmi mes cvs</option>
+        <option value="Personal">chargez un autre cv</option>
+        </select>
+       </div>
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Titre<span style="color: red;">*</span></label>
+     <input type="text" name="nom" class="form-control" >
+          </div>
+          <div class="form-group" id="mobileno_textbox2">
             <label for="recipient-name" class="col-form-label">Mon cv<span style="color: red;">*</span></label>
-            <select class="form-control" id="recipient-name">
-                <option>Activé</option>
-               
+     <select name="doc" class="form-control"  > 
+     @foreach($cvs as $cv)
+               <option value="{{$cv->titre}}">{{$cv->titre}}</option>
+               @endforeach
             </select>
           </div>
               
-                 <div class="form-group">
-          
-      <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Metier <span style="color: red;">*</span></label>
-            <select class="form-control" id="recipient-name">
-            <option>a</option>
-              <option>a</option>
-                <option>a</option>
-                  <option>a</option></select>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Lettre de motivation</label>
+              <input type="file" class="form-control" name="lettre" >
           </div>
+     
+           <div class="form-group" style="display: none;"  id="mobileno_textbox">
+            <label for="message-text" class="col-form-label">Pièce jointe</label>
+              <input type="file" class="form-control" name="doc" >
           </div>
 
-                 <div class="form-group">
-          
-            <label for="recipient-name" class="col-form-label">Années d'experience<span style="color: red;">*</span></label>
-            <select class="form-control" id="recipient-name">
-            <option>1 à 2 ans</option>
-              <option>3 à 5 ans</option>
-                <option>6 à 10 ans</option>
-                  <option>plus de 10 ans</option></select>
-          </div>
-         <div class="form-group">
-            <label for="recipient-name" class="col-form-label" >Niveau d'études</label>
-            <select class="form-control" id="recipient-name">
-                <option>Niveau secondaire</option>
-                <option>Niveau terminal</option>
-                 <option>Formation Professionnelle</option>
-                <option>Bacculaureat</option>
-                 <option>Universitaire sans diplome</option>
-                <option>TS Bac +2</option>
-                 <option>Licence(LMD),Bac+3</option>
-                <option>Master 1,bac+4</option>
-                 <option>Master 2,bac+5 </option>
-                 <option> Magistere bac+7</option>
-                 <option>Doctorat</option>
-                 <option>Certification</option>
-            </select>
-          </div>
-           <div class="form-group">
-            <label for="message-text" class="col-form-label">Pièce jointe</label>
-              <input type="file" class="form-control" >
-          </div>
            <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Ok</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary">Postuler</button>
       </div>
         </form>
       </div>
@@ -408,7 +409,33 @@
 
                     <div class="job-detail border rounded mt-4">
                          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" >Postuler</button>
+                     <!-- <script>
+                      $(document).ready(function(){
+$("select").change(function()
+{
+$(this).find("option:selected").each(function(){
+var optionValue = $(this).attr("value");
+if(optionValue){
+
+    #("." + optionValue).show();
+}
+else
+{$(".box").hide();}
+});
+
+}).change();
+
+
+
+                      }
+                     
+                      );
                       
+                      
+                      
+                      
+                      </script>-->
+                     
                     </div>
                 </div>
             </div>
