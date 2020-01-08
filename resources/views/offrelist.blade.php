@@ -55,16 +55,20 @@
                                                     </label>
                                                 </th>
                                                 <th>Num Offre</th>
-                                                <th>Poste</th>
-                                                <th>description</th>
-                                                <th>date de publication</th>
+                                                <th>Intitulé</th>
+                                                <th>Domaine</th>
+                                                <th>Diplome</th>
                                                 
-                                                <th>date de fin de publication</th>
-                                                <th>Prix de l'offre</th>
+                                                
+                                                <th>Rémunération</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
+                                        <ul class="pagination job-pagination mb-0 justify-content-center">
+                            <li class="page-item active">{{$offres->links()}}</li>
+      </ul> 
                                         <tbody>
+                                            @foreach($offres as $job)
                                             <tr class="tr-shadow">
                                                 <td>
                                                     <label class="au-checkbox">
@@ -72,136 +76,37 @@
                                                         <span class="au-checkmark"></span>
                                                     </label>
                                                 </td>
-                                                <td>Lori Lynch</td>
+                                                <td>{{$job->id}}</td>
                                                 <td>
-                                                    <span class="block-email">lori@example.com</span>
+                                                    <span class="block-email">{{$job->intitule}}</span>
                                                 </td>
-                                                <td class="desc">Samsung S8 Black</td>
-                                                <td>2018-09-27 02:12</td>
+                                                <td class="desc">{{$job->domaine}}</td>
+                                                
                                                 <td>
-                                                    <span class="status--process">Processed</span>
+                                                    <span class="status--process">{{$job->diplome}}</span>
                                                 </td>
-                                                <td>$679.00</td>
+                                                <td>{{$job->remun}}DA</td>
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                            <i class="zmdi zmdi-mail-send"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        
+                                                            <a href="{{ url('jobs/'. $job->id.'/edit') }}"  class="btn btn-success "><i class="zmdi zmdi-edit"></i></a>
+
+                                                            <form action ="{{url('jobs/'.$job->id)}}" method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                         
+                                                        <button  class="btn btn-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                                             <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                        </button></form>
+                                                        <a href="{{ url('emplois/'.$job->id) }}" class="item" data-toggle="tooltip" data-placement="top" title="Details">
                                                             <i class="zmdi zmdi-more"></i>
-                                                        </button>
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr class="spacer"></tr>
-                                            <tr class="tr-shadow">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Lori Lynch</td>
-                                                <td>
-                                                    <span class="block-email">john@example.com</span>
-                                                </td>
-                                                <td class="desc">iPhone X 64Gb Grey</td>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>
-                                                    <span class="status--process">Processed</span>
-                                                </td>
-                                                <td>$999.00</td>
-                                                <td>
-                                                    <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                            <i class="zmdi zmdi-mail-send"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="spacer"></tr>
-                                            <tr class="tr-shadow">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Lori Lynch</td>
-                                                <td>
-                                                    <span class="block-email">lyn@example.com</span>
-                                                </td>
-                                                <td class="desc">iPhone X 256Gb Black</td>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>
-                                                    <span class="status--denied">Denied</span>
-                                                </td>
-                                                <td>$1199.00</td>
-                                                <td>
-                                                    <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                            <i class="zmdi zmdi-mail-send"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="spacer"></tr>
-                                            <tr class="tr-shadow">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Lori Lynch</td>
-                                                <td>
-                                                    <span class="block-email">doe@example.com</span>
-                                                </td>
-                                                <td class="desc">Camera C430W 4k</td>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>
-                                                    <span class="status--process">Processed</span>
-                                                </td>
-                                                <td>$699.00</td>
-                                                <td>
-                                                    <div class="table-data-feature">
-                                                    >
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                               <tr class="spacer"></tr>
+                                           @endforeach
+                                         
                                         </tbody>
                                     </table>
                                 </div></div></div></div></div></div>
