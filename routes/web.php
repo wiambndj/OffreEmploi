@@ -122,3 +122,12 @@ Route::get('companiess', 'CompanyController@index1');
 Route::post('/profiles/update/job/{id}',['uses' => 'JobController@update','as' => 'offre.update']);
 Route::post('/profiles/update/profile/a/b/{id}',['uses' => 'PostulesController@store','as' => 'postuler.store']);
 Route::get('/accueil/recherche/offre',['uses' => 'JobController@barrerecherche','as' => 'recherche']);
+Route::get('chart/annee',['uses' => 'ChartController@index2','as' => 'chart']);
+
+Route::get('chart/{annee}', 'ChartController@index');
+Route::get('chart/abc/a/a/a/a', 'ChartController@highchart3');
+Route::get('chart/abc/a/a', 'ChartController@highchart');
+Route::get('users', 'ChartController@index5');
+Route::get('/recruteur/barChart','ChartController@viewChartBar');
+Route::get('bar/chart/annee',['uses' => 'ChartController@charbar','as' => 'chartbar']);
+Route::get('bar/chart/sponane',['uses' => 'ChartController@charbar2','as' => 'chartbar2']);
