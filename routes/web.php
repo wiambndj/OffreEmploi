@@ -131,3 +131,4 @@ Route::get('users', 'ChartController@index5');
 Route::get('/recruteur/barChart','ChartController@viewChartBar');
 Route::get('bar/chart/annee',['uses' => 'ChartController@charbar','as' => 'chartbar']);
 Route::get('bar/chart/sponane',['uses' => 'ChartController@charbar2','as' => 'chartbar2']);
+Route::get('/dynamic_pdf/pdf/{id}', 'DynamicPDFController@pdf');
