@@ -232,5 +232,89 @@
 
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/home.js')}}"></script>
+    <script>
+  
+  $('#edit').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var title = button.data('mytitle') 
+      var lieu = button.data('mylieu') 
+      var description = button.data('mydescription') 
+      var debut= button.data('mydebut') 
+      var fin = button.data('myfin') 
+      var cat_id = button.data('catid') 
+   
+      var modal = $(this)
+      modal.find('.modal-body #title').val(title);
+      modal.find('.modal-body #lieu').val(lieu);
+      modal.find('.modal-body #description').val(description);
+      modal.find('.modal-body #debut').val(debut);
+      modal.find('.modal-body #fin').val(fin);
+      
+      modal.find('.modal-body #cat_id').val(cat_id);
+ 
+})
+  $('#delete').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var cat_id = button.data('catid') 
+      var modal = $(this)
+      modal.find('.modal-body #cat_id').val(cat_id);
+})
+$('#edit2').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var title = button.data('mytitle') 
+      var lieu = button.data('mylieu') 
+      var description = button.data('mydescription') 
+      var etablissement = button.data('myetablissement') 
+      var debut= button.data('mydebut') 
+      var type = button.data('mytype') 
+      var domaine = button.data('mydomaine') 
+      var diplome= button.data('mydiplome') 
+      var fin = button.data('myfin') 
+      var for_id = button.data('forid') 
+   
+      var modal = $(this)
+      modal.find('.modal-body #titre').val(title);
+      modal.find('.modal-body #lieu').val(lieu);
+      modal.find('.modal-body #description').val(description);
+      modal.find('.modal-body #etablissement').val(etablissement);
+      modal.find('.modal-body #debut').val(debut);
+      modal.find('.modal-body #type').val(type);
+      modal.find('.modal-body #domaine').val(domaine);
+      modal.find('.modal-body #diplome').val(diplome);
+      modal.find('.modal-body #fin').val(fin);
+      
+      modal.find('.modal-body #for_id').val(for_id);
+ 
+})
+$('#edit4').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var description = button.data('mydescription') 
+      var cmp_id = button.data('cmpid') 
+   
+      var modal = $(this)
+      modal.find('.modal-body #description').val(description);
+      modal.find('.modal-body #cmp_id').val(cmp_id);
+ 
+})
+$('#delete2').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var for_id = button.data('forid') 
+      var modal = $(this)
+      modal.find('.modal-body #for_id').val(for_id);
+})
+$('#delete3').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var lan_id = button.data('lanid') 
+      var modal = $(this)
+      modal.find('.modal-body #lan_id').val(lan_id);
+})
+$('#delete4').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var cmp_id = button.data('cmpid') 
+      var modal = $(this)
+      modal.find('.modal-body #cmp_id').val(cmp_id);
+})
+</script>
     </html> 
+
     
