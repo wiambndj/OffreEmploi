@@ -119,4 +119,25 @@ class ProfilesController extends Controller
            
             Session::flash('success', 'Profile updated.');
             return redirect()->back();}
+                   public function getContact() {
+                return view('contact');
+            }
+        
+            function send(Request $request)
+            {
+             $this->validate($request, [
+              'name'     =>  'required',
+              'email'  =>  'required|email',
+              'message' =>  'required'
+             ]);
+        
+                $data = array(
+                    'name'      =>  $request->name,
+                    'message'   =>   $request->message
+                );
+        
+             Mail::to('khadidjabrr71@gmail.com')->send(new SendMail($data));
+             return back()->with('success', 'Thanks for contacting us!');
+        
+            }
 }
