@@ -132,3 +132,9 @@ Route::get('/recruteur/barChart','ChartController@viewChartBar');
 Route::get('bar/chart/annee',['uses' => 'ChartController@charbar','as' => 'chartbar']);
 Route::get('bar/chart/sponane',['uses' => 'ChartController@charbar2','as' => 'chartbar2']);
 Route::get('/dynamic_pdf/pdf/{id}', 'DynamicPDFController@pdf');
+
+Route::group(['middleware'=>['auth']], function (){
+    Route::get('favorite/{id}','FavoriteController@add');
+    Route::get('favorite/sup/{id}','FavoriteController@delete');
+   // Route::post('comment/{post}','CommentController@store')->name('comment.store');
+ });
