@@ -140,3 +140,7 @@ Route::group(['middleware'=>['auth']], function (){
     Route::get('favorite/sup/{id}','FavoriteController@delete');
    // Route::post('comment/{post}','CommentController@store')->name('comment.store');
  });
+
+
+Route::get('/sendemail', 'ProfilesController@getContact');
+Route::post('/sendemail/send', 'ProfilesController@send');
