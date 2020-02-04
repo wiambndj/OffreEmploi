@@ -135,3 +135,8 @@ Route::get('bar/chart/sponane',['uses' => 'ChartController@charbar2','as' => 'ch
 
 Route::get('/sendemail', 'ProfilesController@getContact');
 Route::post('/sendemail/send', 'ProfilesController@send');
+Route::group(['middleware'=>['auth']], function (){
+    Route::get('favorite/{id}','FavoriteController@add');
+    Route::get('favorite/sup/{id}','FavoriteController@delete');
+   // Route::post('comment/{post}','CommentController@store')->name('comment.store');
+ });
