@@ -142,6 +142,7 @@ Route::get('users', 'ChartController@index5');
 Route::get('/recruteur/barChart','ChartController@viewChartBar');
 Route::get('bar/chart/annee',['uses' => 'ChartController@charbar','as' => 'chartbar']);
 Route::get('bar/chart/sponane',['uses' => 'ChartController@charbar2','as' => 'chartbar2']);
+Route::get('/accueil/recherche/offre/type',['uses' => 'JobController@recherchetype','as' => 'type']);
 <<<<<<< HEAD
 
 
@@ -163,3 +164,5 @@ Route::get('emplois/{id}', 'JobController@indexjob');
 Route::get('contact', 'ProfilesController@getContact')->name('contact.create');
 Route::post('contact', 'ProfilesController@postContact')->name('contact.store');
 >>>>>>> 6a0a3d7fd1171263ddf582c56320df1ef9278b9b
+
+

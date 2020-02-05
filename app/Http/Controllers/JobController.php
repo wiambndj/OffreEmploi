@@ -134,4 +134,18 @@ $users = DB::table('jobs')->join('companies', 'jobs.user_id', '=', 'companies.id
             $jobs=Job::All();
             return view('acceuil', ['offres' => $jobs]);
             }
+                 public function recherchetype(Request $request) {
+            $q=$request->get('customRadio');
+            $v=$request->get('customRadio1');
+            $r=$request->get('customRadio2');
+            $users = DB::table('jobs')->join('companies', 'jobs.user_id', '=', 'companies.id')
+            ->where('jobs.type','=',$q)
+            ->orwhere('jobs.diplome','=',$v)
+            ->orwhere('remun', $r)
+            ->select('jobs.*', 'companies.logo')
+            ->paginate(5);
+            $jobs=Job::All();
+                
+            return view('joblist', ['offres' => $users,'jobs' => $jobs]);
+                }
 }
