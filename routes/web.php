@@ -73,6 +73,7 @@ Route::get('/profiles/changepassword',['uses' => 'ProfilesController@changePassw
 Route::get('/profiles/{name}',['uses' => 'ProfilesController@index','as' => 'profile']);
 Route::get('/profiles/{name}/a/',['uses' => 'ProfilesController@index1','as' => 'profilerec']);
 Route::get('/profiles/modifier//a',['uses' => 'ProfilesController@edit1','as' => 'profilerec.editrec']);
+Route::get('/accueil/recherche/offre/type',['uses' => 'JobController@recherchetype','as' => 'type']);
 Route::post('/profiles/modifier//a/b',['uses' => 'ProfilesController@update1','as' => 'profilerec.update1']);
 Route::get('/profiles/edit/profile',['uses' => 'ProfilesController@edit','as' => 'profile.edit']);
 Route::get('/profiles/edit/profile/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a/a',['uses' => 'CompanyController@edit','as' => 'company.edit']);
