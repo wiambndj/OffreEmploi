@@ -10,40 +10,7 @@
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
                                <h3 class="title-5 m-b-35">Les offres de mon entreprise</h3>
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--md">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">All Properties</option>
-                                                <option value="">Option 1</option>
-                                                <option value="">Option 2</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                        <div class="rs-select2--light rs-select2--sm">
-                                            <select class="js-select2" name="time">
-                                                <option selected="selected">Today</option>
-                                                <option value="">3 Days</option>
-                                                <option value="">1 Week</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                        <button class="au-btn-filter">
-                                            <i class="zmdi zmdi-filter-list"></i>filters</button>
-                                    </div>
-                                    <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                            <i class="zmdi zmdi-plus"></i>add item</button>
-                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                                            <select class="js-select2" name="type">
-                                                <option selected="selected">Export</option>
-                                                <option value="">Option 1</option>
-                                                <option value="">Option 2</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                              
                                 <div class="table-responsive table-responsive-data2">
                                     <table class="table table-data2" align="left">
                                         <thead>
@@ -64,9 +31,7 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <ul class="pagination job-pagination mb-0 justify-content-center">
-                            <li class="page-item active">{{$offres->links()}}</li>
-      </ul> 
+         
                                         <tbody>
                                             @foreach($offres as $job)
                                             <tr class="tr-shadow">
@@ -87,20 +52,25 @@
                                                 </td>
                                                 <td>{{$job->remun}}DA</td>
                                                 <td>
+                                               
                                                     <div class="table-data-feature">
                                                         
-                                                            <a href="{{ url('jobs/'. $job->id.'/edit') }}"  class="btn btn-success "><i class="zmdi zmdi-edit"></i></a>
-
-                                                            <form action ="{{url('jobs/'.$job->id)}}" method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                         
-                                                        <button  class="btn btn-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button></form>
-                                                        <a href="{{ url('emplois/'.$job->id) }}" class="item" data-toggle="tooltip" data-placement="top" title="Details">
-                                                            <i class="zmdi zmdi-more"></i>
+                                                            <a href="{{ url('jobs/'. $job->id.'/edit') }}"  class="btn btn-success btn-circle " style="border-radius: 50%;" ><i class="fa fa-pen text-light"></i></a>&nbsp;
+                                                            <a  role ="button" data-jobid="{{$job->id}}"  data-toggle="modal" data-target="#delete6" class="btn btn-danger btn-circle " style="border-radius: 50%;"><i class="zmdi zmdi-delete text-light"></i></a>
                                                         
+                                                        <a href="{{ url('emplois/'.$job->id) }}" class="item" data-toggle="tooltip" data-placement="top" title="Details">
+                                                        <i class="zmdi zmdi-more">  </i>         <?php   $co =DB::table('postules')
+                                 ->join('jobs', 'jobs.id', '=', 'postules.job_id') ->where('lu','=',0)->where('etat','=',0)->where('postules.job_id', '=',$job->id)->get();        ?>
+                                                         <div class="noti__item js-item-menu">   
+                                      
+                                      @if ($co->count()>0)  
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="quantity">    {{$co->count()}}</span> @endif</div>  
+                                
+                                                         
+                                 
+                                
+                        
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -109,5 +79,35 @@
                                          
                                         </tbody>
                                     </table>
-                                </div></div></div></div></div></div>
+                                    
+                                </div> </div> </div>                           <br>     <ul class="pagination job-pagination mb-0 justify-content-center">
+                            <li class="page-item active"> &nbsp;{{$offres->links()}} </li>
+      </ul> <br></div></div></div>
+      
+<div class="modal modal-danger fade" id="delete6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">confirmation la supprimation</h4>
+      </div>
+      <form action="{{url('jobs/'.$job->id)}}" method="post">
+            {{method_field('delete')}}
+            {{csrf_field()}}
+          <div class="modal-body">
+                <p class="text-center">
+                
+Voulez-vous vraiment supprimer cela?
+                </p>
+                <input type="hidden" name="offre_id" id="job_id" value="">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Non, annuler</button>
+            <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection
