@@ -80,6 +80,8 @@
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
         <img src="{{$cv->photo}}" height="150"class="rounded-circle" alt="Cinque Terre">
+          
+           <a href="{{ url('dynamic_pdf/pdf/'.$cv->id) }}" class="btn btn-light"><i class="mdi mdi-cloud-upload"></i></a>
           <div class="caption">
             <h3>{{ $cv->titre }}</h3>
             <p>{{ $cv->presentation }}</p>

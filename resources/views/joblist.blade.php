@@ -2,17 +2,7 @@
 @section('titre','job')
 @section('content1')
 <body>
-<script>
-$(document).ready(function(){
-    <?php $maxP=count($jobs);
-    for($i=0;$i<$maxP;$i++){?>
-   $('#cartBtn<?php echo $i;?>').click(function(){
-var pro_id <?php echo $i;?> = $('#pro_id<?php echo $i;?>').val();
-alert(pro_id<?php echo $i;?>);
-  });
- <?php    } ?>
-});
-</script>
+
     <!-- Navbar End -->
     
     <!-- Start home -->
@@ -272,8 +262,11 @@ alert(pro_id<?php echo $i;?>);
                                         </div>
                                         <div class="col-lg-7 col-md-9">
                                             <div class="job-list-desc">
+<<<<<<< HEAD
                                             <input type="hidden" id="pro_id" value="{{$job->id}}"/>
 
+=======
+>>>>>>> 6a0a3d7fd1171263ddf582c56320df1ef9278b9b
                                                 <h6 class="mb-2"><a href="{{ url('emplois/'.$job->id) }}" class="text-dark">{{$job->intitule}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->domaine}}</p>
                                                 <ul class="list-inline mb-0">
@@ -289,6 +282,7 @@ alert(pro_id<?php echo $i;?>);
                                         </div>
                                         <div class="col-lg-3 col-md-3">
                                             <div class="job-list-button-sm text-right">
+<<<<<<< HEAD
                                             <div class="modal-header">
                                             @guest
                                       
@@ -305,11 +299,20 @@ alert(pro_id<?php echo $i;?>);
                                     <a href= "{{ url('favorite/'.$job->id) }}" ><i class="far fa-heart"></i></a></div><?php }?>  @endguest
                                                     <div class="mt-3">
                                                     <a href= "{{ url('emplois/'.$job->id) }}" class="btn btn-sm btn-primary">Voi details</a>
+=======
+                                                <span class="badge badge-success">Full-Time</span>
+
+                                                <div class="mt-3">
+                                                    <a href="#" class="btn btn-sm btn-primary">Apply</a>
+>>>>>>> 6a0a3d7fd1171263ddf582c56320df1ef9278b9b
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     </div>
+=======
+>>>>>>> 6a0a3d7fd1171263ddf582c56320df1ef9278b9b
                                 </div>
                             </div>
                         </div>

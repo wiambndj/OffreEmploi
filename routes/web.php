@@ -122,8 +122,19 @@ Route::get('companiess', 'CompanyController@index1');
 Route::post('/profiles/update/job/{id}',['uses' => 'JobController@update','as' => 'offre.update']);
 Route::post('/profiles/update/profile/a/b/{id}',['uses' => 'PostulesController@store','as' => 'postuler.store']);
 Route::get('/accueil/recherche/offre',['uses' => 'JobController@barrerecherche','as' => 'recherche']);
-Route::get('chart/annee',['uses' => 'ChartController@index2','as' => 'chart']);
 
+
+
+Route::get('/dynamic_pdf/pdf/{id}', 'DynamicPDFController@pdf');
+
+Route::group(['middleware'=>['auth']], function (){
+    Route::get('favorite/{id}','FavoriteController@add');
+    Route::get('favorite/sup/{id}','FavoriteController@delete');
+   // Route::post('comment/{post}','CommentController@store')->name('comment.store');
+ });
+
+Route::get('/sendemail', 'ProfilesController@getContact');
+Route::post('/sendemail/send', 'ProfilesController@send');
 Route::get('chart/{annee}', 'ChartController@index');
 Route::get('chart/abc/a/a/a/a', 'ChartController@highchart3');
 Route::get('chart/abc/a/a', 'ChartController@highchart');
@@ -131,6 +142,7 @@ Route::get('users', 'ChartController@index5');
 Route::get('/recruteur/barChart','ChartController@viewChartBar');
 Route::get('bar/chart/annee',['uses' => 'ChartController@charbar','as' => 'chartbar']);
 Route::get('bar/chart/sponane',['uses' => 'ChartController@charbar2','as' => 'chartbar2']);
+<<<<<<< HEAD
 
 
 Route::get('/sendemail', 'ProfilesController@getContact');
@@ -144,3 +156,10 @@ Route::group(['middleware'=>['auth']], function (){
 
 Route::get('/sendemail', 'ProfilesController@getContact');
 Route::post('/sendemail/send', 'ProfilesController@send');
+=======
+Route::get('Recruteur/chart/',['uses' => 'ChartController@viewChartBar2','as' => 'chartbar3']);
+Route::get('emploi', 'JobController@index2');
+Route::get('emplois/{id}', 'JobController@indexjob');
+Route::get('contact', 'ProfilesController@getContact')->name('contact.create');
+Route::post('contact', 'ProfilesController@postContact')->name('contact.store');
+>>>>>>> 6a0a3d7fd1171263ddf582c56320df1ef9278b9b

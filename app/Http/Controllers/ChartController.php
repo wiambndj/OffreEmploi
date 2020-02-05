@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Job;
 use App\Company;
+use App\User;
 use App\Postule;
 use Auth;
 use App\Spontane;
@@ -29,6 +30,48 @@ class ChartController extends Controller
       return view('chart', $record);
     }
 
+    function viewChartBar2(Request $request){
+        /* $offres = Job::select(\DB::raw("COUNT(*) as count"))
+         ->whereYear('created_at', date('Y'))
+       
+         ->groupBy(\DB::raw('Month(created_at)'),\DB::raw('type'))
+         ->pluck('count');
+     
+       return view('barChart', compact('offres'));*/
+       $q=$request->get('annee');
+       $a=Auth::user()->company->id;
+     
+       $cdd= Job::select(\DB::raw("COUNT(*) as count"))
+       ->where('jobs.user_id','=',$a)
+       ->where('type','=','CDD')
+       ->whereYear('created_at',$q)
+       ->groupBy(DB::raw("Month(created_at)"))
+       ->get()->toArray();
+                     
+       $cdd = array_column($cdd, 'count');
+       
+       $cdi = Job::select(DB::raw("COUNT(*) as count"))
+       ->where('jobs.user_id','=',$a)
+       ->where('type','=','CDI')
+       ->whereYear('created_at',$q)
+     
+       ->groupBy(DB::raw("Month(created_at)"))
+       ->get()->toArray();
+       $cdi = array_column($cdi, 'count');
+       $stage= Job::select(DB::raw("COUNT(*) as count"))
+       ->where('jobs.user_id','=',$a)
+       ->where('type','=','Stage')
+       ->whereYear('created_at',$q)
+     
+       ->groupBy(DB::raw("Month(created_at)"))
+       ->get()->toArray();
+       $stage = array_column($stage, 'count');
+       return view('barChart')
+       ->with('cdd',json_encode($cdd,JSON_NUMERIC_CHECK))
+       ->with('cdi',json_encode($cdi,JSON_NUMERIC_CHECK))
+       ->with('stage',json_encode($stage,JSON_NUMERIC_CHECK));}
+
+
 
     public function index2(Request $request)
     {$a=Auth::user()->company->id;
@@ -43,22 +86,25 @@ class ChartController extends Controller
     }    
     public function highchart()
 {
-    $viewer['chart'] = Postule::select(\DB::raw("COUNT(*) as count"))
+  $a=Auth::user()->company->id;
 
-->groupBy(DB::raw("year(created_at)"))
-->get()->toArray();
-              
-$viewer = array_column($viewer, 'count');
-
-$click = Spontane::select(DB::raw("COUNT(*) as count"))
-
-->groupBy(DB::raw("year(created_at)"))
-->get()->toArray();
-$click = array_column($click, 'count');
-return view('highchart')
-->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
-->with('click',json_encode($click,JSON_NUMERIC_CHECK));
-}
+  $viewer = Postule::select(\DB::raw("COUNT(*) as count"))
+  ->where('postules.user_id','=',$a)
+  ->whereYear('created_at',2020)
+  ->groupBy(DB::raw("Month(created_at)"))
+  ->get()->toArray();
+                
+  $viewer = array_column($viewer, 'count');
+  
+  $click = Spontane::select(DB::raw("COUNT(*) as count"))
+  ->whereYear('created_at',2020)
+  ->where('spontanes.entre_id','=',$a)
+  ->groupBy(DB::raw("Month(created_at)"))
+  ->get()->toArray();
+  $click = array_column($click, 'count');
+  return view('highchart')
+  ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
+  ->with('click',json_encode($click,JSON_NUMERIC_CHECK));}
 
 public function highchart3()
 {
@@ -73,13 +119,24 @@ public function highchart3()
 
 return view('chart2', $record);}
 */
-$data=[];
+$a=Auth::user()->company->id;
+$record = Job::select(\DB::raw("COUNT(*) as count"), \DB::raw("lieu"))
+->where('jobs.user_id','=',$a)
+->groupBy('lieu')
 
- $record['chart'] = Job::select(\DB::raw("lieu,COUNT(*) as count"))
-                ->groupBy(\DB::raw("lieu"))
-                ->pluck('count');
+->get();
+
+ $data = [];
+
+ foreach($record as $row) {
+    $data['label'][] = $row->lieu;
+    $data['data'][] = (int) $row->count;
+  }
+
+$data['chart_data'] = json_encode($data);
+return view('chart2', $data);
               
-  return view('chart2', $record);
+ 
 }
 
 /*$jumLelaki =Job::selectRaw( 'COUNT(*) as count')
@@ -93,7 +150,7 @@ $response = array(
     'user_count' => $count
     );
 return Response::json($response);*/
-/*
+
 public function index5()
 {
     $borderColors = [
@@ -122,7 +179,7 @@ public function index5()
 
     ];
     $data = collect([]);
-    $data->push(Job::whereDate('lieu', today()->subDays()->count());
+    $data->push(Job::whereDate('lieu', today()->subDays()->count()));
     $usersChart = new UserChart;
     $usersChart->minimalist(true);
     $usersChart->labels(['Jan', 'Feb', 'Mar']);
@@ -130,16 +187,47 @@ public function index5()
         ->color($borderColors)
         ->backgroundcolor($fillColors);
     return view('users', [ 'usersChart' => $usersChart ] );
-}*/
+}
 function viewChartBar(){
-    $offres = Job::select(\DB::raw("COUNT(type) as count"))
+   /* $offres = Job::select(\DB::raw("COUNT(*) as count"))
     ->whereYear('created_at', date('Y'))
+  
     ->groupBy(\DB::raw('Month(created_at)'),\DB::raw('type'))
     ->pluck('count');
 
-  return view('barChart', compact('offres'));
+  return view('barChart', compact('offres'));*/
 
-}
+  $a=Auth::user()->company->id;
+
+  $cdd= Job::select(\DB::raw("COUNT(*) as count"))
+  ->where('jobs.user_id','=',$a)
+  ->where('type','=','CDD')
+  ->whereYear('created_at',2020)
+  ->groupBy(DB::raw("Month(created_at)"))
+  ->get()->toArray();
+                
+  $cdd = array_column($cdd, 'count');
+  
+  $cdi = Job::select(DB::raw("COUNT(*) as count"))
+  ->where('jobs.user_id','=',$a)
+  ->where('type','=','CDI')
+  ->whereYear('created_at',2020)
+
+  ->groupBy(DB::raw("Month(created_at)"))
+  ->get()->toArray();
+  $cdi = array_column($cdi, 'count');
+  $stage= Job::select(DB::raw("COUNT(*) as count"))
+  ->where('jobs.user_id','=',$a)
+  ->where('type','=','Stage')
+  ->whereYear('created_at',2020)
+
+  ->groupBy(DB::raw("Month(created_at)"))
+  ->get()->toArray();
+  $stage = array_column($stage, 'count');
+  return view('barChart')
+  ->with('cdd',json_encode($cdd,JSON_NUMERIC_CHECK))
+  ->with('cdi',json_encode($cdi,JSON_NUMERIC_CHECK))
+  ->with('stage',json_encode($stage,JSON_NUMERIC_CHECK));}
 
 function  charbar(Request $request ){
     $q=$request->get('annee');
@@ -151,23 +239,47 @@ function  charbar(Request $request ){
 
 
 function  charbar2(Request $request ){
+    $a=Auth::user()->company->id;
     $q=$request->get('annee');
-    $viewer['chart'] = Postule::select(\DB::raw("COUNT(*) as count"))
-    ->whereYear('created_at', 2020)
-    ->groupBy(DB::raw("year(created_at)"))
+    $viewer = Postule::select(\DB::raw("COUNT(*) as count"))
+    ->where('postules.user_id','=',$a)
+    ->whereYear('created_at',$q)
+    ->groupBy(DB::raw("Month(created_at)"))
     ->get()->toArray();
                   
     $viewer = array_column($viewer, 'count');
     
     $click = Spontane::select(DB::raw("COUNT(*) as count"))
-    ->whereYear('created_at', 2020)
-    ->groupBy(DB::raw("year(created_at)"))
+    ->whereYear('created_at',$q)
+    ->where('spontanes.entre_id','=',$a)
+    ->groupBy(DB::raw("Month(created_at)"))
     ->get()->toArray();
     $click = array_column($click, 'count');
     return view('highchart')
     ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
     ->with('click',json_encode($click,JSON_NUMERIC_CHECK));}
-}
 
 
 
+
+function category()
+{
+  
+ $record = User::select(\DB::raw("COUNT(*) as count"), \DB::raw("admin"))
+
+ ->groupBy('admin')
+
+ ->get();
+
+  $data = [];
+
+  foreach($record as $row) {
+if($row->admin==0){
+     $data['label'][] = 'utilisateur';
+     $data['data'][] = (int) $row->count;}
+     else {   $data['label'][] = 'contact recruteur';
+        $data['data'][] = (int) $row->count;}
+   }
+
+ $data['chart_data'] = json_encode($data);
+ return view('admin.users', $data);}}

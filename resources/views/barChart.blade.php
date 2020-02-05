@@ -2,6 +2,7 @@
 @section('content')
 
 
+
 </head>
     
 <div class="page-container">
@@ -9,28 +10,27 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                     </div>
+                    <div class="row">
 
-<div class="row">
-<form action="{{ route('chartbar') }}" method="GET">
+<div class="col-lg-offset-10 col-lg-2">
+<form id="idForm" action="{{ route('chartbar3') }}" method="GET" class="demo-default">
         
                 {{ csrf_field() }}
 
           <div class="form-group">
-        <select name=annee>
+        <select class="form-control"  name=annee id="annee" onchange="document.getElementById('idForm').submit();">
+        <option value="">Select Année</option>
         <option value="2020">2020</option>
         <option value="2019">2019</option>
         <option value="2018">2018</option>
         <option value="2017">2017</option>
         <option value="2016">2016</option>
         <option value="2015">2015</option>
-          </div>
-          <div class="form-group"> 
-          <input type="submit" class=" btn btn-primary rounded-pill" value="Envoyer">
-          </div>
-        </form>
+        </select>
+        </div>          
+        </form>  
 
-
-
+        </div> </div> 
 <figure class="highcharts-figure">
     <div id="container"></div>
 </figure>
@@ -42,8 +42,10 @@
      <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
      <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script type="text/javascript">
-        var offre = {{ json_encode($offres,JSON_NUMERIC_CHECK) }};
-
+      
+        var data_cdi = <?php echo $cdi; ?>;
+var data_cdd = <?php echo $cdd; ?>;
+var data_stage = <?php echo $stage; ?>;
     Highcharts.chart('container', {
 
 chart: {
@@ -51,12 +53,10 @@ chart: {
 },
 
 title: {
-    text: 'Offres chart'
+    text: 'Le nombre d\'offres par type'
 },
 
-subtitle: {
-    text: '2020'
-},
+
 
 legend: {
     align: 'right',
@@ -73,17 +73,20 @@ xAxis: {
 
 yAxis: {
     title: {
-        text: 'Number of New Offres'
+        text: 'nombre d\'offres'
     }
 },
 
 series: [{
-    name: 'Full time',
-    data: offre
-}, {
-    name: 'Part time',
-    data: offre
-}],
+       name: 'CDD',
+       data:  data_cdd
+     }, {
+       name: 'CDI',
+       data: data_cdi
+    }, {
+       name: 'Stage',
+       data: data_stage
+    }],
 
 responsive: {
     rules: [{
@@ -119,7 +122,7 @@ responsive: {
 
 </script>
 
-</div></div></div></div> 
+</div></div></div>
      @endsection
 
 
