@@ -126,7 +126,7 @@ Route::get('/accueil/recherche/offre',['uses' => 'JobController@barrerecherche',
 
 
 Route::get('/dynamic_pdf/pdf/{id}', 'DynamicPDFController@pdf');
-
+Route::get('/dynamic_pdf/pdf/postule/{id}', 'DynamicPDFController@pdf2');
 Route::group(['middleware'=>['auth']], function (){
     Route::get('favorite/{id}','FavoriteController@add');
     Route::get('favorite/sup/{id}','FavoriteController@delete');
